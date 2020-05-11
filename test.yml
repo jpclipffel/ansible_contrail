@@ -1,0 +1,12 @@
+- hosts: all
+  connection: httpapi
+  gather_facts: False
+  tasks:
+
+    - name: Query Contrail
+      contrail:
+        name: VPCB12
+        type: virtual-network
+        domain: default-domain
+        project: vCenter
+        state: query
