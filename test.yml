@@ -3,10 +3,20 @@
   gather_facts: False
   tasks:
 
-    - name: Query Contrail
+    - name: Query a resource
+      register: _contrail_vpc
       contrail:
-        name: VPCB12
+        name: VPCB1
         type: virtual-network
         domain: default-domain
         project: vCenter
         state: query
+      
+    - name: Print API request status code (integer)
+      debug:
+        var: _contrail_vpc.status_code
+
+    - name: Print API request response (JSON)
+      debug:
+        var: _contrail_vpc.content
+
