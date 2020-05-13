@@ -3,20 +3,28 @@
   gather_facts: False
   tasks:
 
-    - name: Query a resource
+    - name: Create a resource
       register: _contrail_vpc
       contrail:
-        name: VPCB1
+        name: test_ansible_1
         type: virtual-network
         domain: default-domain
         project: vCenter
-        state: query
+        state: present
+        definition:
+          network_ipam_refs:
+            - attr:
+                ipam_subnets:
+                  - subnet:
+                      ip_prefix: 100.100.100.0
+                      ip_prefix_len: 24
+              to:
+                - default-domain
+                - vCenter
+                - vCenter-ipam
       
-    - name: Print API request status code (integer)
+    - name: Print API request response
       debug:
-        var: _contrail_vpc.status_code
+        var: _contrail_vpc
 
-    - name: Print API request response (JSON)
-      debug:
-        var: _contrail_vpc.content
 
