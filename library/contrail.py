@@ -128,7 +128,7 @@ class Resource:
     '''Generic Contrail resource interface.
 
     One **can't** use a :class:`Resource` directly: a derivied class, such as
-    :class:`VirtualNetwork` must be used instead,
+    :class:`VirtualNetwork` must be used instead.
     '''
 
     # Resource properties, overide by :class:`Resource`'s derived classes.
